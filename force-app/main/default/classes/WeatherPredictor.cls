@@ -26,7 +26,7 @@ public class WeatherPredictor {
         return deserializeData;
     }
     
-    public static void preparingAndInsertingData(Map<String, Object> deserializeData, String City) {
+    public static weather__c preparingAndInsertingData(Map<String, Object> deserializeData, String City) {
         if(deserializeData.size() > 0) {
               weather__c prepairWetherObject = new weather__c (
                 Temprat__c = (Decimal) deserializeData.get('feelslike_c'),
@@ -38,14 +38,17 @@ public class WeatherPredictor {
             try {
                 if (Schema.sObjectType.weather__c.isCreateable()) {
 					insert prepairWetherObject;
+                    return prepairWetherObject;
+                     
                 }     
             }
             catch(DmlException e) {
                 System.debug('Message: ' + e.getMessage());
             }  
-        }  
+        }
+        return null;
     }
-    public static weather__c preparingAndInsertingData(Map<String, Object> deserializeData, String City, String contactId) {
+    public static void preparingAndInsertingData(Map<String, Object> deserializeData, String City, String contactId) {
         if(deserializeData.size() > 0) {
               weather__c prepairWetherObject = new weather__c (
                 Temprat__c = (Decimal) deserializeData.get('feelslike_c'),
@@ -58,7 +61,6 @@ public class WeatherPredictor {
             try {
                 if (Schema.sObjectType.weather__c.isCreateable()) {
 					insert prepairWetherObject;
-                    return prepairWetherObject
                 }     
             }
             catch(DmlException e) {
