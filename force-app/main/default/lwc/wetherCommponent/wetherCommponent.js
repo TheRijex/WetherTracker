@@ -3,10 +3,8 @@ import getWetherForComponent from '@salesforce/apex/WerherController2.getWetherF
 
 
 export default class WetherComponent extends LightningElement{
-     
      @api recordId;
-     
 
-     //@wire(getWetherForComponent,{idc})wetherForComponent;
-     
+     @wire(getWetherForComponent,{userId: '$recordId'})wetherForComponent;
+
 }

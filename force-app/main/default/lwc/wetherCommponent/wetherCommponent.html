@@ -1,7 +1,31 @@
 <template>
     <lightning-card title="Wether">
-        <h2>I'm work</h2>
-       {recordId}
-       
+     <div class="body">
+          <h2>I'm work</h2>
+          <span>Your Id:</span> {recordId}
+          <template if:true={wetherForComponent.data}>
+               <ul>
+                    <template for:each={wetherForComponent.data} for:item="weth">
+                         <li key={weth.id}>
+                              <span>Temperature in C: </span>{weth.Temprat__c}
+                              <p></p>
+                              <span>Temperature in F: </span>{weth.temperature_in_F__c}
+                              <p></p>
+                              <span>Gust speed(MP/H): </span>{weth.gust_mph__c}
+                              
+                         </li>
+
+                    </template>
+               </ul>
+
+            
+       </template>
+       <template if:false={wetherForComponent.data}>
+            <p>
+               lol
+            </p>
+       </template>
+     </div>
+        
     </lightning-card>
 </template>
